@@ -2,6 +2,8 @@
 
 import { useChat } from 'ai/react';
 import { TextGenerateEffect } from '@/components/TextGenerate';
+import remarkGfm from 'remark-gfm';
+import Markdown from 'react-markdown';
 
 export default function Chat() {
 	const { messages, input, handleInputChange, handleSubmit, isLoading, stop } =
@@ -9,9 +11,12 @@ export default function Chat() {
 
 	return (
 		<div className='h-dvh w-full flex flex-col justify-center max-w-7xl m-auto relative px-2'>
-			<h1 className='font-bold text-2xl mx-auto mt-2'>
-				Ai.Den - Your Mental Health Assistant
-			</h1>
+			<div className='mx-auto  mt-2 text-center'>
+				<h1 className='font-bold text-2xl'>
+					Ai.Den - Your Mental Health Assistant
+				</h1>
+				<p className='text-gray-600'>Ask mental health related questions</p>
+			</div>
 			<div className='border-4 rounded-md border-gray-200/80 shadow-sm w-full h-full flex flex-col my-4 px-2'>
 				<div className='px-2 h-full flex flex-col overflow-auto scroll-smooth'>
 					{messages.map((m, i) => (
@@ -24,15 +29,17 @@ export default function Chat() {
 							<p className={`font-bold text-md`}>
 								{m.role === 'user' ? 'User: ' : 'Aiden: '}
 							</p>
-							{m.role === 'user' ? (
+							{/* {m.role === 'user' ? (
 								<p>{m.content}</p>
 							) : (
 								<TextGenerateEffect
 									className='px-2 h-fit'
 									words={m.content.split(' ') as string[]}
 								/>
-							)}
-							{/* <Markdown remarkPlugins={[remarkGfm]}>{m.content.split(' ') as string}</Markdown> */}
+							)} */}
+							<Markdown remarkPlugins={[remarkGfm]}>
+								{m.content as string}
+							</Markdown>
 						</div>
 					))}
 				</div>
