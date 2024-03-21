@@ -7,8 +7,6 @@ import { GoogleGenerativeAIStream, Message, StreamingTextResponse } from 'ai';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
-export const runtime = 'edge';
-
 const buildGoogleGenAIPrompt = (messages: Message[]) => ({
 	contents: messages
 		.filter(
