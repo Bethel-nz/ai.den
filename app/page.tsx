@@ -23,7 +23,9 @@ export default function Chat() {
 						<div
 							key={m.id}
 							className={` mb-4 bg-[#0C0C0C] rounded-md text-gray-100 p-2 ${
-								m.role === 'user' ? 'self-end pl-2 w-[24] lg:w-72' : ' '
+								m.role === 'user'
+									? 'self-end pl-2 w-[24em] lg:w-72'
+									: ' w-[24em] lg:w-72'
 							} ${i === 0 ? 'mt-4' : 'mt-2'}`}
 						>
 							<p className={`font-bold text-md`}>
